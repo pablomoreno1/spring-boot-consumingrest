@@ -9,6 +9,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import ch.qos.logback.classic.Level;
+
 @SpringBootApplication
 public class ConsumingRestApplication {
 
@@ -27,7 +29,7 @@ public class ConsumingRestApplication {
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
 		return args -> { 
 			Quote quote = restTemplate.getForObject("https://gistcdn.githack.com/ayan-b/ff0441b5a8d6c489b58659ffb849aff4/raw/e1c5ca10f7bea57edd793c4189ea8339de534b45/response.json", Quote.class);
-			log.info(quote.toString());
+			log.info("Quote info: {}", quote);
 		};
 	}
 }
